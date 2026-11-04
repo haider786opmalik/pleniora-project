@@ -59,7 +59,7 @@ jobs:
 
   build-ios:
     name: Build iOS Project (Offline)
-    runs-on: macos-14
+    runs-on: macos-26
 
     steps:
       - name: Checkout Code
@@ -80,7 +80,7 @@ jobs:
       - name: Build iOS App with Xcode
         run: |
           cd ios/App
-          xcodebuild -project App.xcodeproj -scheme App -destination 'generic/platform=iOS' -configuration Debug CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO clean build
+          xcodebuild -project App.xcodeproj -scheme App -destination 'generic/platform=iOS' -configuration Debug CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO -derivedDataPath build clean build
 
       - name: Upload iOS App Artifact
         uses: actions/upload-artifact@v4
