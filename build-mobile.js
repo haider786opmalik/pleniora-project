@@ -67,8 +67,10 @@ console.log('Mobile web bundle successfully generated in www/');
 // Run Capacitor Sync to update Android and iOS native projects
 try {
   console.log('Syncing Capacitor android and ios platforms...');
-  execSync('npx.cmd cap sync', { stdio: 'inherit', cwd: rootDir });
+  const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+  execSync(`${npx} cap sync`, { stdio: 'inherit', cwd: rootDir });
   console.log('Capacitor sync complete!');
 } catch (e) {
   console.error('Capacitor sync error:', e.message);
+  process.exitCode = 1;
 }
